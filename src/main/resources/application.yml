@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: gateway
+    cloud:
+        gateway:
+            routes:
+                - id: users
+                  uri: lb://users
+                  predicates:
+                    - Path=/api/users/**
+                  filters:
+                    - StripPrefix=2
+
+# ejemplo http://localhost:8002/listar
+# ejemplo http://localhost:8002/listar
+
+server:
+    port: 8090
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka
